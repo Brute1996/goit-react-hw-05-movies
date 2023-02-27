@@ -13,3 +13,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.active{
+  color: red;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+address {
+    font-style: normal;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    padding: 0;
+    cursor: pointer;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+picture{
+    display: block;
+}
