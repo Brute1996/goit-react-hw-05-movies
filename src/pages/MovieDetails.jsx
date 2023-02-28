@@ -18,7 +18,6 @@ const MovieDetails = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        setIsLoaded(true)
         getMovieDetailsById(movieId)
             .then(({ title, overview, genres, poster_path, release_date, vote_average }) => {
                 setTitle(title)
@@ -29,7 +28,7 @@ const MovieDetails = () => {
                 setUserScore((vote_average * 10).toFixed() + '%')
             })
             .catch(error => console.log(error))
-            .finally(() => setIsLoaded(false))
+            .finally(() => setIsLoaded(true))
         
     }, [movieId]);
 
@@ -40,7 +39,7 @@ const MovieDetails = () => {
         return location.state ? location.state.comeFromPage : null
     };
 
-    if (isLoaded) {
+    if (!isLoaded) {
         return <Loader />
     }
     

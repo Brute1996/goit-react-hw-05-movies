@@ -14,7 +14,8 @@ const Cast = () => {
             .then(({ cast }) => cast.length > 0 && setCast([...cast]))
             .catch(error => console.log(error))
             .finally(() => !cast && setCastNotFounded("Actors didn't find"));
-    }, [cast, movieId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [movieId])
 
 
     if (!cast) {

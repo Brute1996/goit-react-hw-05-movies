@@ -14,7 +14,8 @@ const Reviews = () => {
             .then(({ results }) => results.length > 0 && setReviews([...results]))
             .catch(error => console.log(error))
             .finally(() => !reviews && setreviewsNotFounded("We don't have any reviews for this movie."))
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[movieId])
     
     if (!reviews) {
         return <b>{reviewsNotFounded}</b>

@@ -3,11 +3,13 @@ import { MovieItem } from "components/MoveItem/MoveItem";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom"
 import { MovieSearchForm } from "components/MovieSearchForm/MovieSearchForm";
+import { Loader } from "components/Loader/Loader";
 
 const Movies = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [findedMoives, setFindedMoives] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
     const searchQuery = searchParams.get('query') ?? '';
     
     
@@ -15,32 +17,42 @@ const Movies = () => {
         e.preventDefault();
 
         const form = e.target
-        const query = form.search.value;
+        const query = form.search.value.trim();
 
         if (query) {
             setSearchParams({ query })
         } else {
+            alert('Enter something')
             setSearchParams({})
         }
 
         form.reset()
     }
-
+    console.log(isLoaded);
 
     useEffect(() => {
         if (!searchQuery) {
+            setIsLoaded(true)
             return
         }
+        
+        setIsLoaded(false)
+        setFindedMoives([])
+
         getMovieByName(searchQuery)
             .then(({ results }) => setFindedMoives([...results]))
             .catch(error => console.log(error))
+            .finally(() => setIsLoaded(true))
     }, [searchQuery]);
+
+    
 
 
 
     return (
         <>
             <MovieSearchForm handleSubmit={handleSubmit} />
+
             {findedMoives && findedMoives.length > 0 &&
                 <ul>
                     {
@@ -48,7 +60,10 @@ const Movies = () => {
                     }
                 </ul>
             }
-            {findedMoives && findedMoives.length === 0 && <b>No results</b>}
+
+            {isLoaded && findedMoives && findedMoives.length === 0 && <b>No results</b>}
+
+            {!isLoaded && <Loader/>}
         </>
     );
 };
