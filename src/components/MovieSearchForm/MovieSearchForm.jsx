@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MovieSearchFormWrapper } from "./MovieSearchFormWrapper.styled";
 
 export const MovieSearchForm = ({ handleSubmit }) => {
@@ -9,3 +10,7 @@ export const MovieSearchForm = ({ handleSubmit }) => {
 
     );
 };
+
+MovieSearchForm.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+}

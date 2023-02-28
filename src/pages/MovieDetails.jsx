@@ -7,7 +7,7 @@ import { MovieDetailsWrapper } from "./page.styled/MovieDetailsWrapper.styled";
 const MovieDetails = () => {
     const { movieId } = useParams();
 
-    const location = useLocation();
+
 
     const [title, setTitle] = useState(null);
     const [overview, setOverview] = useState(null);
@@ -33,11 +33,12 @@ const MovieDetails = () => {
         
     }, [movieId]);
 
+    
+    const location = useLocation();
     const goBackLink = () => {
 
         return location.state ? location.state.comeFromPage : null
     };
-
 
     if (isLoaded) {
         return <Loader />
