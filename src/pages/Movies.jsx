@@ -31,9 +31,8 @@ const Movies = () => {
         if (!searchQuery) {
             return
         }
-
         getMovieByName(searchQuery)
-            .then(({ results }) => results.length > 0 && setFindedMoives([...results]))
+            .then(({ results }) => setFindedMoives([...results]))
             .catch(error => console.log(error))
     }, [searchQuery]);
 
@@ -42,12 +41,14 @@ const Movies = () => {
     return (
         <>
             <MovieSearchForm handleSubmit={handleSubmit} />
-            {findedMoives &&
+            {findedMoives && findedMoives.length > 0 &&
                 <ul>
                     {
                         findedMoives.map(({ id, title }) => <MovieItem id={id} key={id} title={title} />)
                     }
-                </ul>}
+                </ul>
+            }
+            {findedMoives && findedMoives.length === 0 && <b>No results</b>}
         </>
     );
 };
