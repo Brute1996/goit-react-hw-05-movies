@@ -1,7 +1,7 @@
 import { getMovieDetailsById } from "components/api";
 import { Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom"
-import { Loader } from "components/Loader/Loader";
+import MovieDetailsLoader from "components/Loaders/MovieDetailsLoader";
 import { MovieDetailsWrapper } from "./page.styled/MovieDetailsWrapper.styled";
 
 const MovieDetails = () => {
@@ -40,14 +40,14 @@ const MovieDetails = () => {
     };
 
     if (!isLoaded) {
-        return <Loader />
+        return <MovieDetailsLoader />
     }
     
 
     return (
         <MovieDetailsWrapper>
             {goBackLink() && <Link className="button" to={goBackLink()}>Go back</Link>}
-            <img className="poster" src={`https://image.tmdb.org/t/p/original/${posterPath}`} width={400} alt={`${title} poster`} />
+            <img className="poster" src={`https://image.tmdb.org/t/p/original/${posterPath}`} width={400} height={545} alt={`${title} poster`} />
             <h2>{`${title} (${releaseDate})`}</h2>
             <p className="user-score">User score: <span>{userScore}</span></p>
             <h2>Overview</h2>

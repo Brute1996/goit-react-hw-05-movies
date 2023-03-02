@@ -3,7 +3,7 @@ import { MovieItem } from "components/MoveItem/MoveItem";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom"
 import { MovieSearchForm } from "components/MovieSearchForm/MovieSearchForm";
-import { Loader } from "components/Loader/Loader";
+import { Loader } from "components/Loaders/Loader";
 
 const Movies = () => {
 
@@ -28,7 +28,6 @@ const Movies = () => {
 
         form.reset()
     }
-    console.log(isLoaded);
 
     useEffect(() => {
         if (!searchQuery) {
